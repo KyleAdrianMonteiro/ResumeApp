@@ -1,7 +1,54 @@
-<div class="container">
-  <h1>{{title}}</h1>
+<!-- <div class="topnav">
+  <div>
+    <a routerLink="/home" routerLinkActive="active">{{name}}</a>
+  </div>
+  <div class="navLinks" style="float:right">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/blog" routerLinkActive="active">Blog</a>
+  </div>
+    
+</div>
 
-  <b>test</b>
 
-  <h4>Another test</h4>
+
+<router-outlet></router-outlet> -->
+
+<div
+  data-collapse="tiny"
+  data-animation="over-right"
+  data-duration="400"
+  data-ix="navbar"
+  class="navbar w-nav"
+  style="opacity: 1; transition: opacity 600ms ease 0s;"
+>
+  <div class="w-container">
+    <a routerLink="/home" class="logo w-nav-brand w--current"
+      ><div class="long-text">Kyle Monteiro</div></a
+    >
+    <nav role="navigation" class="nav-menu w-nav-menu">
+      <a
+        routerLink="/home"
+        class="nav-link w-nav-link w--current"
+        style="max-width: 728px;"
+        >Home</a
+      ><a routerLink="/projects" class="nav-link w-nav-link" style="max-width: 728px;"
+        >Projects</a
+      ><a routerLink="/about" class="nav-link w-nav-link" style="max-width: 728px;"
+        >About Me</a
+      ><a routerLink="#" class="close-x w-hidden-main w-hidden-medium w-hidden-small"
+        >×</a
+      >
+    </nav>
+    <div
+      class="menu-button w-hidden-main w-hidden-medium w-hidden-small w-clearfix w-nav-button"
+    >
+      <div class="menu-icon w-icon-nav-menu"></div>
+      <div class="menu-link">MENU</div>
+    </div>
+  </div>
+  <div class="w-nav-overlay" data-wf-ignore=""></div>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
 </div>

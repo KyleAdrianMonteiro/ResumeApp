@@ -1,0 +1,62 @@
+<div class="hero-section">
+  <div class="hero-content w-container">
+    <div
+      data-ix="hero-text"
+      class="hero-heading"
+      style="opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px); transition: opacity 600ms ease 0s, transform 600ms ease 0s;"
+    >
+      {{ pageHeading }}
+    </div>
+    <div
+      data-ix="hero-text-2"
+      class="hero-subheading"
+      style="opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px); transition: opacity 600ms ease 0s, transform 600ms ease 0s;"
+    >
+      {{ pageDesc }}
+    </div>
+  </div>
+</div>
+<div id="posts" class="main-section bottom-padding">
+  <div id="Latest-post" class="w-container">
+    <div class="section-heading">
+      <h2 class="section-title">Featured Posts</h2>
+      <div class="med-divider"></div>
+    </div>
+    <div class="w-dyn-list">
+      <div class="w-clearfix w-dyn-items w-row">
+        <div
+          class="featuredthumbnail w-dyn-item w-col w-col-6"
+          *ngFor="let post of posts"
+        >
+          <a
+            routerLink="/post/{{ post.route }}"
+            data-ix="featured-wrapper"
+            class="featured-wrapper w-inline-block"
+            style="transition: transform 0.2s ease 0s, -webkit-transform 0.2s ease 0s;"
+          >
+            <div>
+              <div class="category-tag-2 w-dyn-bind-empty"></div>
+              <div
+                class="featured-image"
+                [style.background-image]="post.thumbnail">
+              </div>
+            </div>
+            <div class="featured-text">
+              <div class="featured-title">{{ post.title }}</div>
+              <div class="featured-description">
+                {{ post.description }}
+              </div>
+              <div class="featured-details">
+                <div class="w-clearfix">
+                  <img src="" alt="" class="author-img w-dyn-bind-empty" />
+                  <div class="author-title lite">{{ post.author }}</div>
+                  <div class="thumbnail-date lite">{{ post.date }}</div>
+                </div>
+              </div>
+            </div></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
