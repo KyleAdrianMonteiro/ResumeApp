@@ -35,7 +35,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: false },
+      { 
+        enableTracing: false,
+        useHash: true
+       },
     ),
     MarkdownModule.forRoot()
   ],
