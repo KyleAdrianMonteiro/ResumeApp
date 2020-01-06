@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href https://kyleadrianmonteiro.github.io/ResumeApp/ && npx ngh --dir=dist --no-silent",
+    "deploy": "ng build --prod --base-href https://kylemonteiro.com",
     "buildW": "webpack --config webpack.config.js"
   },
   "private": true,
