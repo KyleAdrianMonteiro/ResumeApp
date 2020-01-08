@@ -35,7 +35,7 @@ I came into these past four months absolutely dreading front end development how
 
 Another tool I've been using, not only for programming, but also in my daily life, is Trello. Although Trello was not something we actually used in the workplace, being in an agile programming environment was something that I found extremely helpful for keeping my tasks organized. As a result I picked up Trello as a tool to use as a personal scrum board instead of Jira, which was a little to expensive and overkill for what I need.
 
-## Thanks
+## Thanks!
 
 I'd like to give a big thanks to Chad Millen for offering me the oppurunity to be a part of such a great team, and thank you as well to the rest of the team for providing me with such an enjoyable and educational experience. I would also like to specifically thank a few individuals that took time aside from their work to help me out when I needed it, and just in general provided a great work atmosphere:
 
