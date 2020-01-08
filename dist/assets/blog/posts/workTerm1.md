@@ -1,7 +1,7 @@
 {
     "title": "Work Term 1",
     "description":"My first taste of the software industry",
-    "date":"October 17th, 2019",
+    "date":"January 5th, 2020",
     "author":"Kyle Monteiro",
     "thumbnail":"http://uploads.medicaljane.com/wp-content/uploads/2016/06/perkin.png",
     "route":"workTerm1"
@@ -27,5 +27,24 @@ Luckily my issue that was assigned to me was to upgrade the version of AngularJS
 
 As stated above, the front end was developed using two different programming languages: JavaScript and TypeScript. The reason for this is because the plan was to slowly convert the web app from AngularJS to Angular, which is a newer version of the framework built upon the TypeScript language. Since TypeScript files can also be used with AngularJS, the idea was that we would convert all the JavaScript files into TypeScript first, which would ease the transition from AngularJS to Angular. Most of this was already done, however there were a few files left that needed to be created/converted, and so I reached out to some of the members of the team to see if I could take on this task, and sure enough they said okay.
 
-For the next month I juggled my time addressing new bugs that were popping up that needed to be resolved for a mid-December release, while also converting some of the remaining files to TypeScript components. This ended up being a much bigger task than I had anticipated, which I only came to understand after realizing that they way the previous files had been converted were not correct. They somehow worked, but would not be very helpful for the end goal. As a result, I had to completely restructure how these components were made and interacted with each other
+For the next month I juggled my time addressing new bugs that were popping up that needed to be resolved for a mid-December release, while also converting some of the remaining files to TypeScript components. This ended up being a much bigger task than I had anticipated, which I only came to understand after realizing that they way the previous files had been converted were not correct. They somehow worked, but would not be very helpful for the end goal. As a result, I had to completely restructure how these components were made and interacted with each other. I ended up working on this problem right up until my second last day working, but with a lot of perseverance and some help from my coworkers I was able to finish of this final task wrapping up my coop placement.
+
+## What I Learnt
+
+I came into these past four months absolutely dreading front end development however my view of this side of develpment took a complete 180° turn. The work is not nearly as tedious as I thought it would be, and visually seeing the results of your labour is incredibly gratifying. Since ending my term I've even taken to using my new found skills in front end development to other personal projects that I was inspired to do. As well, I've also taken with me a greater appreciation and understanding of some of the tools I used. Using version control, specifically Git and GitHub, to a greater level has changed the way that I work on projects and make my commits. Things like comparing diffs, using branches, and just a deeper understanding of how these tools work are all things that I make use of in all programming projects now.
+
+Another tool I've been using, not only for programming, but also in my daily life, is Trello. Although Trello was not something we actually used in the workplace, being in an agile programming environment was something that I found extremely helpful for keeping my tasks organized. As a result I picked up Trello as a tool to use as a personal scrum board instead of Jira, which was a little to expensive and overkill for what I need.
+
+## Thanks!
+
+I'd like to give a big thanks to Chad Millen for offering me the oppurunity to be a part of such a great team, and thank you as well to the rest of the team for providing me with such an enjoyable and educational experience. I would also like to specifically thank a few individuals that took time aside from their work to help me out when I needed it, and just in general provided a great work atmosphere:
+
+- Harold Miller-Koren
+- Sarah Shepher
+- Sharath Sundar
+
+
+
+
+
 
