@@ -1,12 +1,12 @@
 {
     "title": "Work Term 2",
-    "description":"My second taste of the software industry",
-    "date":"October 19th, 2019",
+    "description":"An unconventional experience",
+    "date":"May 27th, 2020",
     "author":"Kyle Monteiro",
-    "thumbnail":"http://uploads.medicaljane.com/wp-content/uploads/2016/06/perkin.png",
+    "thumbnail":"https://mma.prnewswire.com/media/1097360/MSI.jpg?p=facebook",
     "route":"workTerm2"
 }
 
 # Introduction
 
-This is a test post
+Coming soon!
