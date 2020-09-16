@@ -32,7 +32,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 To deploy ssh into cPanel.
 
 To copy files to folder:
-cp -r repositories/ResumeApp/dist/. kylemonteiro.com
+cp -r repositories/ResumeApp/dist/. kylemonteiro.com/
 
 to delete files in folder:
-rm -R .
+rm -R assets
+rm *

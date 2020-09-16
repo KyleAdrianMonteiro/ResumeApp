@@ -10,10 +10,12 @@ import { HomeComponent } from './components/home/home.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AboutComponent } from './components/about/about.component';
 import { PostComponent } from './components/post/post.component';
+import { ResumeComponent } from './components/resume/resume.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'resume', component: ResumeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'post/:name', component: PostComponent },
   { path: '',
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProjectsComponent,
     AboutComponent,
-    PostComponent
+    PostComponent,
+    ResumeComponent
   ],
   imports: [
     BrowserModule,

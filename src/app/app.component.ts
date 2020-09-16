@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FirebaseService } from './services/firebase.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name =  'Kyle Monteiro';
+  name = 'Kyle Monteiro';
+  
+  constructor(private firebaseService: FirebaseService) {
+    this.firebaseService.init();
+  }
 }

@@ -15,36 +15,28 @@ export class PostComponent implements OnInit {
   author: string;
   date: string;
   content: string;
-  filePath: string;
   thumbnail: SafeResourceUrl;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     const name = this.route.snapshot.params.name;
+    let postStr = "";
+    let entries = Object.entries(history.state);
+    for(let [key, value] of entries) {
+        postStr += value;
+        if(value == "}") {
+          break;
+        }
+    }
 
-    const reader = new FileReader();
-    const xhr = new XMLHttpRequest();
-
-    reader.onload = (e) => {
-        const firstLine = (reader.result as string).split('}')[0].replace(/\n/, '');
-        const postObj = JSON.parse(firstLine + '}');
-        this.title = postObj.title;
-        this.description = postObj.description;
-        this.date = postObj.date;
-        this.author = postObj.author;
-        this.content = (reader.result as string).substring((reader.result as string).indexOf('}') + 1);
-        this.thumbnail = postObj.thumbnail;
-    };
-
-    this.filePath = 'assets/blog/posts/' + name + '.md';
-
-    xhr.open('GET', this.filePath);
-    xhr.responseType = 'blob';
-    xhr.onload = () => {
-        reader.readAsText(xhr.response, 'UTF-8');
-    };
-    xhr.send();
+    let postObj = JSON.parse(postStr);
+    this.title = postObj.title;
+    this.description = postObj.description;
+    this.author = postObj.author;
+    this.date = postObj.date;
+    this.content = postObj.content;
+    this.thumbnail = postObj.thumbnail;
   }
 
 }

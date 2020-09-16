@@ -22,7 +22,7 @@
       <h2 class="section-title">Featured Posts</h2>
       <div class="med-divider"></div>
     </div>
-    <div class="w-dyn-list">
+    <div class="w-dyn-list" *ngIf="posts != null">
       <div class="w-clearfix w-dyn-items w-row">
         <div
           class="featuredthumbnail w-dyn-item w-col w-col-6"
@@ -30,6 +30,7 @@
         >
           <a
             routerLink="/post/{{ post.route }}"
+            state="{{ post.postString }}"
             data-ix="featured-wrapper"
             class="featured-wrapper w-inline-block"
             style="transition: transform 0.2s ease 0s, -webkit-transform 0.2s ease 0s;"

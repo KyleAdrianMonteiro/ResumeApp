@@ -8,4 +8,5 @@ export class Post {
     content: string;
     thumbnail: SafeResourceUrl;
     route: string;
+    postString: string;
 }
