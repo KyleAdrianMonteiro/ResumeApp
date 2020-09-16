@@ -79,7 +79,7 @@ export class FirebaseService {
         let post = new Promise((resolve, reject) => {
             this.posts.then((result) => {
                 for(let p of result) {
-                    if(p.route == name) {
+                    if(p && p.route == name) {
                         resolve(p);
                     }
                 }
