@@ -380,19 +380,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_firebase_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/firebase.service */ "./src/app/services/firebase.service.ts");
-
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(firebaseService) {
-        this.firebaseService = firebaseService;
+    function AppComponent() {
         this.name = 'Kyle Monteiro';
-        this.firebaseService.init();
     }
-    AppComponent.ctorParameters = function () { return [
-        { type: _services_firebase_service__WEBPACK_IMPORTED_MODULE_2__["FirebaseService"] }
-    ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             // tslint:disable-next-line: component-selector
@@ -633,44 +626,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_services_firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/firebase.service */ "./src/app/services/firebase.service.ts");
+
 
 
 
 var PostComponent = /** @class */ (function () {
-    function PostComponent(route) {
+    function PostComponent(route, firebaseService) {
         this.route = route;
+        this.firebaseService = firebaseService;
     }
     PostComponent.prototype.ngOnInit = function () {
-        var e_1, _a;
+        var _this = this;
         var name = this.route.snapshot.params.name;
-        var postStr = "";
-        var entries = Object.entries(history.state);
-        try {
-            for (var entries_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](entries), entries_1_1 = entries_1.next(); !entries_1_1.done; entries_1_1 = entries_1.next()) {
-                var _b = tslib__WEBPACK_IMPORTED_MODULE_0__["__read"](entries_1_1.value, 2), key = _b[0], value = _b[1];
-                postStr += value;
-                if (value == "}") {
-                    break;
-                }
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (entries_1_1 && !entries_1_1.done && (_a = entries_1.return)) _a.call(entries_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        var postObj = JSON.parse(postStr);
-        this.title = postObj.title;
-        this.description = postObj.description;
-        this.author = postObj.author;
-        this.date = postObj.date;
-        this.content = postObj.content;
-        this.thumbnail = postObj.thumbnail;
+        this.firebaseService.getPost(name).then(function (postObj) {
+            console.log(postObj);
+            _this.title = postObj.title;
+            _this.description = postObj.description;
+            _this.author = postObj.author;
+            _this.date = postObj.date;
+            _this.content = postObj.content;
+            _this.thumbnail = postObj.thumbnail;
+        });
     };
     PostComponent.ctorParameters = function () { return [
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: src_app_services_firebase_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"] }
     ]; };
     PostComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -809,12 +790,18 @@ var FirebaseService = /** @class */ (function () {
             appId: "1:1019813597438:web:791afc2dde02d6bef055af",
             measurementId: "G-EEV31HLHY8",
         };
-        this.posts = [];
+        this.init();
     }
     FirebaseService.prototype.init = function () {
-        firebase_app__WEBPACK_IMPORTED_MODULE_2__["initializeApp"](this.firebaseConfig);
-        this.storage = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]();
-        this.retrievePosts();
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                firebase_app__WEBPACK_IMPORTED_MODULE_2__["initializeApp"](this.firebaseConfig);
+                this.storage = firebase_app__WEBPACK_IMPORTED_MODULE_2__["storage"]();
+                this.posts = this.retrievePosts();
+                console.log(this.posts);
+                return [2 /*return*/];
+            });
+        });
     };
     FirebaseService.prototype.getPostNames = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -827,7 +814,6 @@ var FirebaseService = /** @class */ (function () {
                         var reader = new FileReader();
                         xhr.responseType = 'blob';
                         xhr.onload = function (event) {
-                            var blob = xhr.response;
                             reader.onload = function () {
                                 resolve(reader.result);
                             };
@@ -852,7 +838,6 @@ var FirebaseService = /** @class */ (function () {
                         var reader = new FileReader();
                         xhr.responseType = 'blob';
                         xhr.onload = function (event) {
-                            var blob = xhr.response;
                             reader.onload = function () {
                                 resolve(reader.result);
                             };
@@ -866,47 +851,84 @@ var FirebaseService = /** @class */ (function () {
             });
         });
     };
+    FirebaseService.prototype.getPost = function (name) {
+        var _this = this;
+        var post = new Promise(function (resolve, reject) {
+            _this.posts.then(function (result) {
+                var e_1, _a;
+                console.log(result.toString());
+                try {
+                    for (var result_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](result), result_1_1 = result_1.next(); !result_1_1.done; result_1_1 = result_1.next()) {
+                        var p = result_1_1.value;
+                        console.log(p.route, name);
+                        if (p.route == name) {
+                            resolve(p);
+                        }
+                    }
+                }
+                catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                finally {
+                    try {
+                        if (result_1_1 && !result_1_1.done && (_a = result_1.return)) _a.call(result_1);
+                    }
+                    finally { if (e_1) throw e_1.error; }
+                }
+            });
+        });
+        return post;
+    };
     FirebaseService.prototype.getPosts = function () {
         return this.posts;
     };
     FirebaseService.prototype.retrievePosts = function () {
-        var _this = this;
-        this.getFile('blog.md').then(function (result) {
-            var e_1, _a;
-            var postNames = result.split("\r\n");
-            console.log(postNames);
-            var _loop_1 = function (i, name_1) {
-                var post = _this.getFile(name_1 + ".md").then(function (result) {
-                    var objStr = result.split('}')[0].replace(/\n/, '') + '}';
-                    var postObj = JSON.parse(objStr);
-                    var p = {
-                        title: postObj.title,
-                        description: postObj.description,
-                        date: postObj.date,
-                        author: postObj.author,
-                        thumbnail: "url(" + postObj.thumbnail + ")",
-                        content: result.substring(result.indexOf('}') + 1),
-                        route: postObj.route,
-                        postString: ""
-                    };
-                    p.postString = JSON.stringify(p);
-                    p.postString = p.postString;
-                    _this.posts[i] = p;
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var posts;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                posts = new Promise(function (resolve, reject) {
+                    _this.getFile('blog.md').then(function (result) {
+                        var e_2, _a;
+                        var postNames = result.split("\r\n");
+                        var postArr = [];
+                        var _loop_1 = function (i, name_1) {
+                            var post = _this.getFile(name_1 + ".md").then(function (result) {
+                                var objStr = result.split('}')[0].replace(/\n/, '') + '}';
+                                var postObj = JSON.parse(objStr);
+                                var p = {
+                                    title: postObj.title,
+                                    description: postObj.description,
+                                    date: postObj.date,
+                                    author: postObj.author,
+                                    thumbnail: "url(" + postObj.thumbnail + ")",
+                                    content: result.substring(result.indexOf('}') + 1),
+                                    route: postObj.route,
+                                    postString: ''
+                                };
+                                p.postString = JSON.stringify(p);
+                                p.postString = p.postString;
+                                postArr[i] = p;
+                                if (i == postNames.length - 1) {
+                                    resolve(postArr);
+                                }
+                            });
+                        };
+                        try {
+                            for (var _b = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](postNames.entries()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                                var _d = tslib__WEBPACK_IMPORTED_MODULE_0__["__read"](_c.value, 2), i = _d[0], name_1 = _d[1];
+                                _loop_1(i, name_1);
+                            }
+                        }
+                        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+                        finally {
+                            try {
+                                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                            }
+                            finally { if (e_2) throw e_2.error; }
+                        }
+                    });
                 });
-            };
-            try {
-                for (var _b = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](postNames.entries()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var _d = tslib__WEBPACK_IMPORTED_MODULE_0__["__read"](_c.value, 2), i = _d[0], name_1 = _d[1];
-                    _loop_1(i, name_1);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
+                return [2 /*return*/, posts];
+            });
         });
     };
     FirebaseService.prototype.getStorage = function () {
