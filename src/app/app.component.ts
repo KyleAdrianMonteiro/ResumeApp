@@ -10,7 +10,5 @@ import { FirebaseService } from './services/firebase.service';
 export class AppComponent {
   name = 'Kyle Monteiro';
   
-  constructor(private firebaseService: FirebaseService) {
-    this.firebaseService.init();
-  }
+  constructor() {}
 }
