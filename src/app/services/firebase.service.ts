@@ -78,9 +78,7 @@ export class FirebaseService {
     getPost(name: string): Promise<any> {
         let post = new Promise((resolve, reject) => {
             this.posts.then((result) => {
-                console.log(result.toString());
                 for(let p of result) {
-                    console.log(p.route, name);
                     if(p.route == name) {
                         resolve(p);
                     }
@@ -100,7 +98,7 @@ export class FirebaseService {
                 let postNames = result.split("\r\n");
                 let postArr: Post[] = [];
                 for (let [i, name] of postNames.entries()) {
-                  let post = this.getFile(name + ".md").then((result) => {
+                  this.getFile(name + ".md").then((result) => {
                     let objStr = (result as string).split('}')[0].replace(/\n/, '') + '}';
                     let postObj = JSON.parse(objStr);
                     let p: Post = {

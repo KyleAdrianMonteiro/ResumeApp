@@ -856,11 +856,9 @@ var FirebaseService = /** @class */ (function () {
         var post = new Promise(function (resolve, reject) {
             _this.posts.then(function (result) {
                 var e_1, _a;
-                console.log(result.toString());
                 try {
                     for (var result_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](result), result_1_1 = result_1.next(); !result_1_1.done; result_1_1 = result_1.next()) {
                         var p = result_1_1.value;
-                        console.log(p.route, name);
                         if (p.route == name) {
                             resolve(p);
                         }
@@ -891,7 +889,7 @@ var FirebaseService = /** @class */ (function () {
                         var postNames = result.split("\r\n");
                         var postArr = [];
                         var _loop_1 = function (i, name_1) {
-                            var post = _this.getFile(name_1 + ".md").then(function (result) {
+                            _this.getFile(name_1 + ".md").then(function (result) {
                                 var objStr = result.split('}')[0].replace(/\n/, '') + '}';
                                 var postObj = JSON.parse(objStr);
                                 var p = {
