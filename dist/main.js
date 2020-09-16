@@ -859,7 +859,7 @@ var FirebaseService = /** @class */ (function () {
                 try {
                     for (var result_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__values"](result), result_1_1 = result_1.next(); !result_1_1.done; result_1_1 = result_1.next()) {
                         var p = result_1_1.value;
-                        if (p.route == name) {
+                        if (p && p.route == name) {
                             resolve(p);
                         }
                     }
